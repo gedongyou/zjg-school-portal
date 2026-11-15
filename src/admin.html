@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内容后台 - 江苏省张家港中等专业学校</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/site.css?v={{V}}">
+<link rel="stylesheet" href="assets/css/admin.css?v={{V}}">
+</head>
+<body class="adm-body">
+
+<!-- ---------- 登录 ---------- -->
+<div class="gate" id="gate">
+  <div class="gate__box">
+    <div class="gate__brand">
+      <img src="assets/img/emblem.png" alt="" width="44" height="44">
+      <div>
+        <b>内容后台</b>
+        <span>江苏省张家港中等专业学校</span>
+      </div>
+    </div>
+    <form id="login-form" autocomplete="off">
+      <label>账号<input type="text" name="u" value="admin" required></label>
+      <label>密码<input type="password" name="p" placeholder="演示密码 admin123" required></label>
+      <button type="submit">登录</button>
+      <p class="gate__tip" id="login-tip">演示账号 admin，密码 admin123。本站为静态站点，没有服务端，登录状态只保存在这个浏览器里。</p>
+    </form>
+    <a class="gate__back" href="index.html">返回前台</a>
+  </div>
+</div>
+
+<!-- ---------- 主界面 ---------- -->
+<div class="shell" id="shell" hidden>
+  <aside class="shell__side">
+    <div class="shell__brand">
+      <img src="assets/img/emblem.png" alt="" width="30" height="30">
+      <span>内容后台</span>
+    </div>
+    <nav class="shell__nav">
+      <button class="on" data-tab="list">内容清单 <b data-count-news>0</b></button>
+      <button data-tab="edit">文章编辑台</button>
+      <button data-tab="majors">专业信息</button>
+    </nav>
+    <div class="shell__foot">
+      <a href="index.html">← 返回前台</a>
+      <button type="button" id="logout">退出</button>
+    </div>
+  </aside>
+
+  <main class="shell__main">
+    <!-- 内容清单 -->
+    <section class="pane on" data-pane="list">
+      <header class="pane__hd">
+        <h1>内容清单</h1>
+        <p>改动保存在这个浏览器的本地草稿里，刷新或关掉再打开都还在，换一台电脑就看不到。要正式发布，仍需把改动写回 <code>content/*.json</code>，再运行 <code>python3 build.py</code>。</p>
+      </header>
+      <div class="stat">
+        <div><b data-st-news>0</b><span>校园新闻</span></div>
+        <div><b data-st-notice>0</b><span>通知公告</span></div>
+        <div><b data-st-major>0</b><span>专业</span></div>
+        <div><b data-st-draft>0</b><span>未保存草稿</span></div>
+      </div>
+      <div class="ltool">
+        <input type="search" id="lq" placeholder="搜标题、部门或日期" aria-label="搜索清单">
+        <div class="lchips" id="ltype" role="group" aria-label="按类型筛选">
+          <button class="on" data-type="all">全部</button>
+          <button data-type="news">新闻</button>
+          <button data-type="notice">公告</button>
+          <button data-type="dirty">有改动</button>
+        </div>
+        <select id="lsort" aria-label="排序">
+          <option value="date">按日期</option>
+          <option value="title">按标题</option>
+        </select>
+        <button type="button" class="primary" id="lnew">新建文章</button>
+        <button type="button" class="ghost" id="ldrop" title="丢弃本浏览器里的全部改动">清空草稿</button>
+      </div>
+      <p class="ltool__meta" id="lmeta"></p>
+      <p class="ltool__none" id="lnone" hidden></p>
+      <div class="tbl-wrap">
+        <table class="tbl" id="tbl-list">
+          <thead><tr><th>类型</th><th>标题</th><th>日期</th><th>部门 / 系部</th><th>操作</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 文章编辑台 -->
+    <section class="pane" data-pane="edit">
+      <header class="pane__hd">
+        <h1>文章编辑台</h1>
+        <p>左侧选中条目，右侧编辑。正文每段一行，空行分段。</p>
+      </header>
+      <div class="editor">
+        <ul class="editor__list" id="editor-list"></ul>
+        <div class="editor__form">
+          <form id="edit-form" autocomplete="off">
+            <label>标题<input type="text" name="title" required></label>
+            <div class="row">
+              <label>日期<input type="date" name="date" required></label>
+              <label>栏目
+                <select name="cat">
+                  <option>校园新闻</option><option>部门新闻</option>
+                  <option>教师工作</option><option>采购公告</option>
+                  <option>教学教研</option><option>学生活动</option>
+                </select>
+              </label>
+              <label>发布部门<input type="text" name="src" required></label>
+            </div>
+            <label>正文<textarea name="body" rows="14" required></textarea></label>
+            <div class="editor__bar">
+              <span class="editor__meta" id="edit-meta"></span>
+              <span class="editor__count" id="edit-count"></span>
+              <button type="button" class="ghost" id="pv-toggle">前台预览</button>
+              <button type="button" class="ghost" id="edit-reset">还原</button>
+              <button type="submit">保存草稿</button>
+            </div>
+          </form>
+          <div class="editor__empty" id="edit-empty">从左侧选择一个条目开始编辑</div>
+          <div class="pv" id="pv" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 专业信息 -->
+    <section class="pane" data-pane="majors">
+      <header class="pane__hd">
+        <h1>专业信息</h1>
+        <p>专业卡片、专业详情页与对照表都取这里的字段，改一处，三处一起变。</p>
+      </header>
+      <div class="ltool">
+        <input type="search" id="mq" placeholder="搜专业名、系部或课程" aria-label="搜索专业">
+      </div>
+      <p class="ltool__none" id="mnone" hidden>没有匹配的专业，清空搜索框看全部 18 个。</p>
+      <div class="tbl-wrap">
+        <table class="tbl tbl--edit" id="tbl-majors">
+          <thead><tr><th>专业</th><th>系部</th><th>主要课程</th><th>技能证书</th><th>适合考生</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>window.ADMIN_DATA = {{DATA}};</script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

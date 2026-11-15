@@ -1,0 +1,271 @@
+<!-- ==================== 轮播（单张，保留文字层） ==================== -->
+  <section class="hero" aria-label="图片轮播">
+    <div class="hero__track">
+      <div class="hero__item">
+        <img src="assets/img/photo/banner.jpg" width="1920" height="400" alt="江苏省张家港中等专业学校校门与校园全景">
+        <div class="hero__cap">
+          <div class="wrap">
+            <div>
+              <h2>2026 年五年制招生宣传手册发布，18 个专业接受咨询</h2>
+              <p>五年一贯制、3+3 中高职衔接、综合高中（职教高考方向）、综合高中（技能方向）</p>
+            </div>
+            <a class="more" href="admission.html">查看详情</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 公告 / 新闻 / 快捷 ==================== -->
+  <div class="wrap">
+    <div class="cols">
+
+      <section aria-labelledby="h-notice">
+        <div class="blk__h">
+          <h2 id="h-notice">通知公告</h2>
+          <a href="news/index.html">更多</a>
+        </div>
+        <ul class="list">
+          {{NOTICES}}
+        </ul>
+      </section>
+
+      <section aria-labelledby="h-news">
+        <div class="blk__h">
+          <h2 id="h-news">校园新闻</h2>
+          <a href="news/index.html">更多</a>
+        </div>
+        <a class="news__lead" href="news/{{LEAD_ID}}.html">
+          <img src="assets/img/photo/news-1.jpg" alt="">
+          <div>
+            <h3>{{LEAD_TITLE}}</h3>
+            <p>{{LEAD_BODY}}</p>
+            <div class="dt">{{LEAD_META}}</div>
+          </div>
+        </a>
+        <ul class="list list--news">
+          {{NEWS_LEAD_LIST}}
+        </ul>
+      </section>
+
+      <aside class="quick" aria-labelledby="h-quick">
+        <h2 id="h-quick">常用服务</h2>
+        <div class="quick__grid">
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>校历与作息</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14z"/></svg>成绩查询</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>校长信箱</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg>图书检索</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>学籍与证明</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a7 7 0 0 1 14 0c0 4.6-7 9-7 9z"/><circle cx="12" cy="11" r="2.6"/></svg>校园地图</a>
+          <a href="admission.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg>招生简章</a>
+          <a href="majors/index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 0 2 2h12"/></svg>专业目录</a>
+          <a href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg>办事指南</a>
+        </div>
+        <p class="quick__note">标有内网的服务需连接校园网后访问，外网可直接打开。</p>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ==================== 学校概况 ==================== -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>学校概况</h2>
+        <p>首批国家改革发展示范校　·　江苏联合职业技术学院张家港分院</p>
+        <a href="about.html">学校简介</a>
+      </div>
+      <div class="about__grid">
+        <p class="about__text">
+          学校创办于 1984 年，2024 年 8 月整体搬迁至张家港市福新路 2 号，占地 360 亩，建筑面积 21 万平方米。
+          设智能控制、机械与汽车工程、信息工程、经济贸易、能源材料五个系和职教高考部，开设 18 个五年一贯制专业，
+          建成省现代化专业群 3 个、省品牌专业 4 个、省优质专业 3 个。校训为“德技双馨、行胜于言”。
+          办学形式有五年一贯制、3+3 中高职衔接和综合高中两类，其中综合高中分职教高考方向与技能方向。
+        </p>
+        <dl class="about__facts">
+          <div><dt>在校学生</dt><dd>6200<small>余人</small></dd></div>
+          <div><dt>专任教师</dt><dd>419<small>人</small></dd></div>
+          <div><dt>校园面积</dt><dd>360<small>亩</small></dd></div>
+          <div><dt>五年制专业</dt><dd>18<small>个</small></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 招生就业 ==================== -->
+  <section class="sec" id="admission">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>招生就业</h2>
+        <p>2026 年招生简章已发布</p>
+        <a href="admission.html#score">历年分数线</a>
+      </div>
+      <table class="adm">
+        <caption class="sr">2026 年招生办学形式对照表</caption>
+        <thead>
+          <tr><th scope="col">办学形式</th><th scope="col">学制</th><th scope="col">毕业去向</th><th scope="col">说明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>五年一贯制<small>五年制高职</small></td>
+            <td>五年</td>
+            <td>大专</td>
+            <td>18 个专业可选，在校五年，毕业发江苏联合职业技术学院全日制大专学历，第五年可参加专转本考试。</td>
+          </tr>
+          <tr>
+            <td>3+3 中高职衔接<small>分段培养</small></td>
+            <td>3+3 年</td>
+            <td>大专</td>
+            <td>服装设计与工艺专业，前三年在本校就读，转段考试合格后进入常州纺织服装职业技术学院读三年，获全日制大专文凭。</td>
+          </tr>
+          <tr>
+            <td>综合高中<small>职教高考方向</small></td>
+            <td>三年</td>
+            <td>本科 / 大专</td>
+            <td>设机械加工技术、电子技术应用、计算机应用、精细化工技术、市场营销五个方向，参加江苏省中职职教高考，本科达线连续 27 年全市第一。</td>
+          </tr>
+          <tr>
+            <td>综合高中<small>技能方向</small></td>
+            <td>三年</td>
+            <td>中专</td>
+            <td>设机械加工技术、计算机应用、会计事务、大数据与会计、无人机操控与维护、光伏工程技术与应用六个方向，以技能培养为主，可自愿报名参加江苏省中职职教高考。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="adm-bar">
+        <a class="btn btn--fill" href="admission.html">招生简章与办学形式</a>
+        <a class="btn btn--line" href="admission.html#score">历年分数线参考</a>
+        <span>招生咨询 0512-58269608　工作日 8:30—17:00　现场咨询请提前电话预约</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 专业设置 ==================== -->
+  <section class="sec" id="majors">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>专业设置</h2>
+        <p>五个系，共 18 个五年一贯制专业　·　可勾选 2—3 个专业做对照</p>
+        <a href="majors/index.html">专业目录</a>
+      </div>
+      <div class="majors">
+        {{MAJORS}}
+      </div>
+      <p style="margin-top:16px;font-size:12.5px;color:var(--ink-3);line-height:1.8;">
+        职教高考部不设固定专业，按语文、数学、英语加专业综合组织教学，三年后参加江苏省职教高考。
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== 五心育人 ==================== -->
+  <section class="sec" id="wuxin">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>五心育人</h2>
+        <p>学校德育工作以“五心”为主线，落到每学期的具体活动</p>
+        <a href="about.html#wuxin">德育之窗</a>
+      </div>
+      <div class="wuxin">
+        <div class="wx"><div class="wx__h"><b>红</b>心·铸魂</div><p>主题党日、团课与思政课；升旗仪式、主题教育实践；学生业余党校。</p></div>
+        <div class="wx"><div class="wx__h"><b>仁</b>心·修身</div><p>资助政策公示、心理健康月、敬老院志愿服务；班主任例会与家访。</p></div>
+        <div class="wx"><div class="wx__h"><b>恒</b>心·砺学</div><p>技能训练周、早晚自习、专转本辅导班；学风建设与学业预警。</p></div>
+        <div class="wx"><div class="wx__h"><b>匠</b>心·强技</div><p>技能大师工作室、大赛集训队、1+X 证书考核；实训基地工作日开放。</p></div>
+        <div class="wx"><div class="wx__h"><b>创</b>心·赋能</div><p>创新创业大赛、电商直播实训、专业社团；优秀校友返校分享。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 新闻中心 ==================== -->
+  <section class="sec" id="news">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>新闻中心</h2>
+        <p>校内新闻、通知公告与媒体报道</p>
+        <a href="news/index.html">更多新闻</a>
+      </div>
+      <div class="cols" style="padding:0;">
+        <section>
+          <ul class="list list--news">
+            {{NEWS_A}}
+          </ul>
+        </section>
+        <section>
+          <ul class="list list--news">
+            {{NEWS_B}}
+          </ul>
+        </section>
+        <aside class="quick">
+          <h2>信息公开</h2>
+          <ul class="list list--news">
+            <li><a href="notices/index.html"><span class="tt">学校章程</span></a></li>
+            <li><a href="notices/index.html"><span class="tt">年度质量报告</span></a></li>
+            <li><a href="notices/index.html"><span class="tt">收费项目与标准</span></a></li>
+            <li><a href="notices/index.html"><span class="tt">招生录取结果查询</span></a></li>
+            <li><a href="notices/index.html"><span class="tt">招标与采购公告</span></a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 校园生活 ==================== -->
+  <section class="sec" id="campus">
+    <div class="wrap">
+      <div class="sec__h">
+        <h2>校园生活</h2>
+        <p>校园建筑、实训场所与就业活动</p>
+        <a href="campus.html">更多图片</a>
+      </div>
+      <div class="campus">
+        <figure>
+          <img src="assets/img/photo/building.jpg" alt="校园建筑">
+          <figcaption>校园建筑<span>福新路校区</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/photo/corridor.jpg" alt="教学楼走廊">
+          <figcaption>教学楼走廊<span>教学区</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/photo/gym.jpg" alt="体育馆">
+          <figcaption>体育馆<span>篮球、羽毛球与集会</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/photo/workshop.jpg" alt="实训室">
+          <figcaption>实训室<span>数控加工实训中心</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/photo/lecture.jpg" alt="企业宣讲">
+          <figcaption>企业宣讲<span>校企合作与就业指导</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/photo/jobfair.jpg" alt="校园招聘会">
+          <figcaption>校园招聘会<span>每年春季、秋季各一场</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+<!-- ==================== 专业对照：底部抽屉 + 对照表 ==================== -->
+<div class="cmp" data-cmp-bar hidden>
+  <div class="cmp__in">
+    <span class="cmp__t">已选 <b data-cmp-n>0</b> 个专业</span>
+    <div class="cmp__chips" data-cmp-chips></div>
+    <button class="cmp__clear" type="button" data-cmp-clear>清空</button>
+    <button class="cmp__go" type="button" data-cmp-go disabled>并排对照</button>
+  </div>
+</div>
+
+<div class="cmp-modal" data-cmp-modal role="dialog" aria-modal="true" aria-labelledby="cmp-h" hidden>
+  <div class="cmp-modal__mask" data-cmp-close></div>
+  <div class="cmp-modal__box">
+    <div class="cmp-modal__hd">
+      <h2 id="cmp-h">专业对照</h2>
+      <button type="button" data-cmp-close aria-label="关闭">×</button>
+    </div>
+    <div data-cmp-body></div>
+    <div class="cmp-modal__ft">
+      培养方向与证书依据学校现行专业教学标准整理，2026 年招生专业与计划以省教育厅下达文件及学校招生简章为准。
+    </div>
+  </div>
+</div>
