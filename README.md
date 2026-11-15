@@ -31,7 +31,7 @@ content/                内容数据（唯一数据源）
 build.py                构建脚本：content/*.json + src/*.html → 47 个 html
 assets/css/site.css     前台样式
 assets/css/admin.css    后台样式
-assets/js/site.js       前台交互（轮播、字号、索引、专业对照）
+assets/js/site.js       前台交互（轮播、索引、专业对照、回顶）
 assets/js/search.js     搜索页
 assets/js/admin.js      后台
 assets/js/index-data.js 全站索引（构建生成，勿手改）

@@ -93,13 +93,6 @@ h1,h2,h3,h4,p,figure{margin:0;}
   letter-spacing:.04em;white-space:nowrap;
 }
 .nav .nav__x:hover{color:#fff;}
-.nav__fs{display:flex;align-items:center;gap:1px;padding:0 10px;}
-.nav__fs button{
-  width:26px;height:26px;display:grid;place-items:center;color:#aebfc5;font-size:12.5px;
-  border:1px solid rgba(255,255,255,.20);transition:.15s;
-}
-.nav__fs button:hover{color:#fff;border-color:rgba(255,255,255,.5);}
-.nav__fs button[aria-pressed="true"]{background:rgba(255,255,255,.18);color:#fff;border-color:transparent;}
 
 /* ---------- 4. 轮播 ---------- */
 .hero{position:relative;background:var(--band);overflow:hidden;margin:0;}

@@ -1,29 +1,6 @@
-/* site.js — 首页交互：轮播、字号、栏目高亮、站内索引、回到顶部 */
+/* site.js — 首页交互：轮播、栏目高亮、站内索引、回到顶部 */
 (function () {
   'use strict';
-
-  /* ---------- 1. 字号 ---------- */
-  var SIZES = { s: '13.5px', m: '15px', l: '17px' };
-  var KEY = 'zhjg_font_size';
-
-  function setFont(k, save) {
-    if (!SIZES[k]) k = 'm';
-    document.documentElement.style.fontSize = SIZES[k];
-    document.body.style.fontSize = SIZES[k];
-    document.body.dataset.fs = k;
-    document.querySelectorAll('[data-font]').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.font === k));
-    });
-    if (save) { try { localStorage.setItem(KEY, k); } catch (e) {} }
-  }
-  var saved = 'm';
-  try { saved = localStorage.getItem(KEY) || 'm'; } catch (e) {}
-  setFont(saved, false);
-
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-font]');
-    if (b) { setFont(b.dataset.font, true); return; }
-  });
 
   /* ---------- 2. 轮播 ---------- */
   (function hero() {
