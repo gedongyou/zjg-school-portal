@@ -138,21 +138,18 @@ def build_home():
                     % (n["id"], esc(n["title"]), short_date(n["date"])))
     news_lead_list = "\n".join(rows)
 
-    cards = []
-    for m in majors:
-        cards.append(
-            '<article class="mj" data-name="%(name)s" data-dept="%(dept)s" data-core="%(core)s" '
-            'data-cert="%(cert)s" data-degree="五年制高职（大专）" data-fit="%(fit)s">\n'
-            '          <label class="mj__pick"><input type="checkbox" value="%(name)s" aria-label="选择%(name)s加入对比"><span>对比</span></label>\n'
-            '          <span class="mj__dept">%(dept)s</span>\n'
-            '          <h3><a href="majors/%(id)s.html">%(name)s</a></h3>\n'
-            '          <p>%(core)s</p>\n'
-            '          <span class="mj__tags"><span>五年制</span><span>%(tag)s</span></span>\n'
-            '        </article>' % {
-                "name": esc(m["name"]), "dept": esc(m["dept"]), "core": esc(m["core"]),
-                "cert": esc(m["cert"]), "fit": esc(m["fit"]), "id": m["id"],
-                "tag": esc(m["cert"].split("、")[0]),
-            })
+    rows = []
+    for dept in DEPT_ORDER:
+        items = [m for m in majors if m["dept"] == dept]
+        links = "、".join(
+            '<a href="majors/%s.html">%s</a>' % (m["id"], esc(m["name"])) for m in items)
+        rows.append(
+            '<div class="dept-row">\n'
+            '        <div class="dept-row__h"><a href="majors/index.html#%s">%s</a>'
+            '<small>%d 个专业</small></div>\n'
+            '        <p class="dept-row__b">%s</p>\n'
+            '      </div>' % (esc(dept), esc(dept), len(items), links))
+    dept_index = '\n      '.join(rows)
 
     # 首页大图：只放一张校园全景，原图 1920x900 不裁切
     hero_html = (
@@ -171,7 +168,7 @@ def build_home():
             .replace("{{LEAD_META}}", "%s　%s" % (esc(lead["src"]), cn_date(lead["date"])))
             .replace("{{LEAD_ID}}", lead["id"])
             .replace("{{NEWS_LEAD_LIST}}", news_lead_list)
-            .replace("{{MAJORS}}", "\n        ".join(cards)))
+            .replace("{{DEPT_INDEX}}", dept_index))
 
     write(os.path.join(HERE, "index.html"),
           chrome("江苏省张家港中等专业学校",
@@ -319,6 +316,34 @@ DEPT_OUT = {
     "能源材料系": "化工与新材料企业是主要去向，岗位有工艺操作、分析检验、设备维护；服装方向进制版、样衣与生产管理。",
 }
 
+CMP_BAR = """
+<div class="cmp" data-cmp-bar hidden>
+  <div class="cmp__in">
+    <span class="cmp__t">已选 <b data-cmp-n>0</b> 个专业</span>
+    <div class="cmp__chips" data-cmp-chips></div>
+    <button class="cmp__clear" type="button" data-cmp-clear>清空</button>
+    <button class="cmp__go" type="button" data-cmp-go disabled>并排对照</button>
+  </div>
+</div>
+"""
+
+CMP_MODAL = """
+<div class="cmp-modal" data-cmp-modal role="dialog" aria-modal="true" aria-labelledby="cmp-h" hidden>
+  <div class="cmp-modal__mask" data-cmp-close></div>
+  <div class="cmp-modal__box">
+    <div class="cmp-modal__hd">
+      <h2 id="cmp-h">专业对照</h2>
+      <button type="button" data-cmp-close aria-label="关闭">×</button>
+    </div>
+    <div data-cmp-body></div>
+    <div class="cmp-modal__ft">
+      培养方向与证书依据学校现行专业教学标准整理，2026 年招生专业与计划以省教育厅下达文件及学校招生简章为准。
+    </div>
+  </div>
+</div>
+"""
+
+
 def build_majors():
     majors = jread("majors.json")
 
@@ -329,13 +354,21 @@ def build_majors():
         rows = []
         for m in items:
             rows.append(
-                '<li><a href="%s.html"><span class="nm">%s</span><span class="ds">%s</span><span class="go">查看 ›</span></a></li>'
-                % (m["id"], esc(m["name"]), esc(m["core"])))
+                '<li data-mj data-name="%(name)s" data-dept="%(dept)s" data-core="%(core)s" '
+                'data-cert="%(cert)s" data-degree="五年制高职（大专）" data-fit="%(fit)s">\n'
+                '            <a href="%(id)s.html"><span class="nm">%(name)s</span>'
+                '<span class="ds">%(core)s</span><span class="go">查看 ›</span></a>\n'
+                '            <label class="mj__pick"><input type="checkbox" value="%(name)s" '
+                'aria-label="选择%(name)s加入对比"><span>对比</span></label>\n'
+                '          </li>' % {
+                    "id": m["id"], "name": esc(m["name"]), "dept": esc(m["dept"]),
+                    "core": esc(m["core"]), "cert": esc(m["cert"]), "fit": esc(m["fit"]),
+                })
         blocks.append(
             '<section class="blk" id="%s">\n'
             '        <h2 class="blk__t">%s<small>%d 个专业</small></h2>\n'
             '        <p class="blk__d">%s</p>\n'
-            '        <ul class="mj-list">\n          %s\n        </ul>\n'
+            '        <ul class="mj-list mj-list--cmp">\n          %s\n        </ul>\n'
             '      </section>'
             % (esc(dept), esc(dept), len(items), esc(DEPT_DESC[dept]), "\n          ".join(rows)))
     blocks.append(
@@ -346,9 +379,9 @@ def build_majors():
 
     body = ('<div class="wrap page">\n'
             '<div class="page__hd"><h1>专业设置</h1>'
-            '<p>五个系，共 18 个五年一贯制专业</p></div>\n'
+            '<p>五个系，共 18 个五年一贯制专业　·　勾选 2—3 个可并排对照</p></div>\n'
             '<div class="page__body">\n      ' + "\n      ".join(blocks) + '\n      </div>\n'
-            '</div>')
+            '</div>' + CMP_BAR + CMP_MODAL)
     html_out = breadcrumb([("专业设置", None)], "../") + body
     write(os.path.join(HERE, "majors", "index.html"),
           chrome("专业设置 - 江苏省张家港中等专业学校",

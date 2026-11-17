@@ -31,7 +31,7 @@ content/                内容数据（唯一数据源）
 build.py                构建脚本：content/*.json + src/*.html → 47 个 html
 assets/css/site.css     前台样式
 assets/css/admin.css    后台样式
-assets/js/site.js       前台交互（轮播、索引、专业对照、回顶）
+assets/js/site.js       前台交互（栏目高亮、站内索引、专业对照、回顶）
 assets/js/search.js     搜索页
 assets/js/admin.js      后台
 assets/js/index-data.js 全站索引（构建生成，勿手改）
@@ -79,7 +79,7 @@ python3 -m http.server 8091 --bind 0.0.0.0
 3. **站内索引**：`Ctrl/Cmd+K` 或点页眉"检"，输入即过滤，索引来自构建时生成的 `index-data.js`，
    不是前端遍历 DOM，所以内页也能搜到全站内容。
 4. **构建式内容管理**：47 个页面由 `content/*.json` 生成，新闻/公告/专业改一处，列表页、
-   详情页、搜索索引、首页卡片同时变。这是"含后台管理"这一命题的落点。
+   详情页、搜索索引、首页系部索引同时变。这是"含后台管理"这一命题的落点。
 
 ## 已知限制
 

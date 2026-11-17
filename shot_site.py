@@ -16,7 +16,7 @@ SECTIONS = [
     ("01-首屏与轮播", ".head", ".cols"),
     ("02-概况与招生", "#about", "#admission"),
     ("03-专业与五心", "#majors", "#wuxin"),
-    ("04-新闻与校园", "#news", "#campus"),
+    ("04-校园与页脚", "#campus", ".foot"),
 ]
 
 async def main():

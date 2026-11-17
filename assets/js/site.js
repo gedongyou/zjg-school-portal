@@ -171,7 +171,7 @@
     var picked = [];   // 存 data-name
 
     function card(name) {
-      return document.querySelector('.mj[data-name="' + name.replace(/"/g, '\\"') + '"]');
+      return document.querySelector('[data-mj][data-name="' + name.replace(/"/g, '\\"') + '"]');
     }
 
     function paint() {
@@ -188,7 +188,7 @@
       picks.forEach(function (cb) {
         var on = picked.indexOf(cb.value) > -1;
         cb.checked = on;
-        var cardEl = cb.closest('.mj');
+        var cardEl = cb.closest('[data-mj]');
         if (cardEl) cardEl.classList.toggle('is-picked', on);
       });
     }
